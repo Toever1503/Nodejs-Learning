@@ -1,9 +1,17 @@
 import express from "express";
 import initResources from "./src/bases/route/Index.js";
 import accountResource from "./src/resources/account/index.js";
+import getJwtProvider from "./src/configs/security/jwt/JwtProvider.mjs";
+
 
 const app = express();
+
 initResources(app, accountResource);
+app.use((req, res) => {
+    res.end(req.headers['host']);
+})
+
+
 const server = app.listen(8081, function () {
     const host = server.address().address
     const port = server.address().port
