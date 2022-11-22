@@ -1,14 +1,16 @@
 import express from "express";
 import initResources from "./src/bases/route/Index.js";
 import accountResource from "./src/resources/account/index.js";
-import getJwtProvider from "./src/configs/security/jwt/JwtProvider.mjs";
-
+import getJwtFilter from "./src/configs/JwtConfig.mjs";
 
 const app = express();
 
+app.use(getJwtFilter());
 initResources(app, accountResource);
-app.use((req, res) => {
-    res.end(req.headers['host']);
+app.use((req, res, next) => {
+
+    const base = req.url;
+    next();
 })
 
 

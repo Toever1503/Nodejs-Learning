@@ -1,3 +1,4 @@
+"use strict";
 export default class UserDetail {
     #user
     constructor(user) {

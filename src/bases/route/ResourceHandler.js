@@ -1,3 +1,4 @@
+"use strict";
 import {forceFormatUrlPath} from "../../utils/Utils.js";
 
 class ResourceHandler {
@@ -78,7 +79,7 @@ class ResourceHandler {
 
         this.#postMappings.forEach((v, k) => {
             console.log(`Creating post path ${k}`);
-            router.post(k,v.getHandler());
+            router.post(k, v.getHandler());
         });
         this.#putMappings.forEach((v, k) => {
             console.log(`Creating put path ${k}`);
@@ -103,6 +104,10 @@ class ResourceHandler {
         return router;
     }
 };
+
+const securityFilter = v => {
+
+}
 
 export default ResourceHandler;
 

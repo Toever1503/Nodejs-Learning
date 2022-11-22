@@ -1,5 +1,6 @@
+"use strict";
 import jwt from "jsonwebtoken";
-import JwtPayloadMustStringError from "./JwtPayloadMustStringError.mjs";
+import JwtPayloadMustStringError from "../errors/JwtPayloadMustStringError.mjs";
 
 class JwtProvider {
     #secret
@@ -8,7 +9,7 @@ class JwtProvider {
         this.#secret = process.env.JWT_SECRET;
     }
 
-    sign(payload, timeValid = 1800) {
+    async sign(payload, timeValid = 1800) {
         if (typeof payload !== 'string')
             throw new JwtPayloadMustStringError('payload must be string');
         return jwt.sign({
@@ -16,7 +17,7 @@ class JwtProvider {
         }, this.#secret, {expiresIn: timeValid});
     }
 
-    verify(token) {
+    async verify(token) {
         return jwt.verify(token, this.#secret);
     }
 

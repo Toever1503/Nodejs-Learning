@@ -1,3 +1,4 @@
+"use strict";
 function createRouters(pathPrefix, app, ...resources) {
     console.log("createRouters: ", resources);
     pathPrefix = `/${pathPrefix}/`;
