@@ -2,39 +2,31 @@
 // Path: src\repositories\UserRepository.mjs
 import {DataTypes, Model} from "sequelize";
 import getEntityManager from "../configs/db.config.mjs";
+import UserRepository from "./UserRepository.mjs";
 
-export default class UserRepository extends Model {
+
+export default class RoleRepository extends Model {
 }
 
-UserRepository.init({
+RoleRepository.init({
     id: {
         type: DataTypes.BIGINT,
         autoIncrement: true,
         primaryKey: true,
         field: 'id'
     },
-    userName: {
+    roleName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        field: 'user_name'
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        field: 'email'
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        field: 'password'
+        field: 'role_name'
     },
 
 }, {
     // Other model options go here
     sequelize: await getEntityManager(), // We need to pass the connection instance
-    tableName: 'tbl_user', // We need to choose the model name
-    modelName: 'user'
+    tableName: 'tbl_role', // We need to choose the model name,
+    modelName: 'role'
 });
+
 

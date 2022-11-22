@@ -2,16 +2,12 @@ import express from "express";
 import initResources from "./src/bases/route/Index.js";
 import accountResource from "./src/resources/account/index.js";
 import getJwtFilter from "./src/configs/JwtConfig.mjs";
+import  './src/repositories/Index.mjs';
 
 const app = express();
 
-app.use(getJwtFilter());
-initResources(app, accountResource);
-app.use((req, res, next) => {
-
-    const base = req.url;
-    next();
-})
+// app.use(getJwtFilter());
+// initResources(app, accountResource);
 
 
 const server = app.listen(8081, function () {
