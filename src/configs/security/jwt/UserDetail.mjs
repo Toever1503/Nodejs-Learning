@@ -1,16 +1,10 @@
 "use strict";
-export default class UserDetail {
-    #userAuth
+import {Model} from "sequelize";
 
-    setUserAuth(user) {
-        this.#userAuth = user;
-    }
-
-    getUserAuth() {
-        return this.#userAuth;
-    }
+export default class UserDetail extends Model {
 
     getAuthorities() {
         throw new Error("UserDetail has not implemented func 'getAuthorities'");
     };
 };
+

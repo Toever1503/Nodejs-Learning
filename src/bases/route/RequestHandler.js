@@ -40,18 +40,19 @@ export default class RequestHandler {
     getSecurity() {
         if (this.#allowedRoles.length === 0)
             return null;
-        return (req, res, next) => {
+        return async (req, res, next) => {
             if (!req.$auth)
-                throw new AccessDeniedError(`Access denied for ${req.url}`);
+                next(new AccessDeniedError(`Access denied for ${req.url}`));
             let hasPermitted = false;
+            const authorities = (await req.$auth.getAuthorities()).map(r => r.roleName);
             for (let role of this.#allowedRoles) {
-                if (req.$auth.getAuthorities().includes(role)) {
+                if (authorities.includes(role)) {
                     hasPermitted = true
                     break;
                 }
             }
             if (!hasPermitted)
-                throw new AccessDeniedError(`Access denied for ${req.url}`);
+                next(new AccessDeniedError(`Access denied for ${req.url}`));
             else next();
         }
     }

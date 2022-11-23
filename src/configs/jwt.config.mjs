@@ -9,9 +9,9 @@ const publicUrls = [
 
 
 let jwtFilter = null;
-export default function getJwtFilter() {
+export default async function getJwtFilter() {
     if (jwtFilter === null)
-        jwtFilter = new JwtFilter(publicUrls, getUserService());
+        jwtFilter = new JwtFilter(publicUrls, await getUserService());
     return async (req, res, next) => {
         jwtFilter.filter(req, res, next);
     };

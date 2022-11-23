@@ -6,10 +6,12 @@ import './src/repositories/Index.mjs';
 import bodyParser from "body-parser";
 import multer from "multer";
 import CustomExceptionHandler from "./src/resources/exception/CustomExceptionHandler.mjs";
+import {config} from "dotenv";
 
 const app = express();
+config();
 
-app.use(getJwtFilter());
+app.use(await getJwtFilter());
 // parse application/json
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());

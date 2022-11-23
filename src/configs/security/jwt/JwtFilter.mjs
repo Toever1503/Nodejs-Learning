@@ -45,8 +45,7 @@ export default class JwtFilter {
             const userDetail = await this.#userService.validateToken(token.slice(7));
             if (!(userDetail instanceof UserDetail))
                 next(new JwtFilterError('User detail must be an instance of UserDetail'));
-            else if (!(userDetail.getUserAuth()))
-                next(new JwtFilterError('UserAuth must be set in UserDetail'));
+
             req.$auth = userDetail;
             next();
         }

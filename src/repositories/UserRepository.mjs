@@ -2,8 +2,13 @@
 // Path: src\repositories\UserRepository.mjs
 import {DataTypes, Model} from "sequelize";
 import getEntityManager from "../configs/db.config.mjs";
+import UserDetail from "../configs/security/jwt/UserDetail.mjs";
+import RoleEntitySchema from "../entities/RoleEntity.js";
 
-class UserRepository extends Model {
+class UserRepository extends UserDetail {
+    getAuthorities() {
+        return this[RoleEntitySchema.pluralGet]();
+    }
 }
 
 async function createUserRepository() {

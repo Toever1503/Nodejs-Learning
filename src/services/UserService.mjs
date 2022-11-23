@@ -5,6 +5,7 @@ import passwordEncoder from "../configs/security/PasswordEncoder.mjs";
 import CustomErrorDto from "../dtos/CustomErrorDto.mjs";
 import UserLoginResponseDto from "../dtos/UserLoginResponseDto.mjs";
 import RoleEntitySchema from "../entities/RoleEntity.js";
+import UserDetail from "../configs/security/jwt/UserDetail.mjs";
 
 
 class UserService {
@@ -16,7 +17,9 @@ class UserService {
     }
 
     async validateToken(token) {
-        return getJwtProvider().verify(token);
+        const decodedData = await getJwtProvider().verify(token);
+        const user = await this.findByUsernameOrEmail(decodedData.data);
+        return user;
     }
 
     async findByUsernameOrEmail(username) {
