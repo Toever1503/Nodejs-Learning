@@ -9,12 +9,11 @@ import CustomExceptionHandler from "./src/resources/exception/CustomExceptionHan
 
 const app = express();
 
+app.use(getJwtFilter());
 // parse application/json
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(multer().array());
-app.use(getJwtFilter());
-
 
 initResources(app,
     accountResource);

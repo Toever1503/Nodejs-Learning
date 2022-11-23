@@ -8,6 +8,7 @@ import {initRole, initUser} from "./Init.mjs";
 const entityManager = await getEntityManager();
 entityManager.sync({alter: true});
 
-
-await initRole();
-await initUser();
+setTimeout(async () => {
+    await initRole();
+    await initUser();
+}, 1000);
