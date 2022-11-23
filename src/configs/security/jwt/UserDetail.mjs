@@ -1,13 +1,16 @@
 "use strict";
 export default class UserDetail {
-    #user
-    constructor(user) {
-        this.#user = user;
+    #userAuth
+
+    setUserAuth(user) {
+        this.#userAuth = user;
     }
 
-    getUser() {
-        return this.#user;
+    getUserAuth() {
+        return this.#userAuth;
     }
 
-    getAuthorities();
-}
+    getAuthorities() {
+        throw new Error("UserDetail has not implemented func 'getAuthorities'");
+    };
+};

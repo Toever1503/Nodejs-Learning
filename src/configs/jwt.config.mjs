@@ -6,9 +6,9 @@ import RequestMatcher from "./security/RequestMatcher.js";
 const publicUrls = [
     new RequestMatcher('/account/login'),
 ];
+
+
 let jwtFilter = null;
-
-
 export default function getJwtFilter() {
     if (jwtFilter === null)
         jwtFilter = new JwtFilter(publicUrls, getUserService());

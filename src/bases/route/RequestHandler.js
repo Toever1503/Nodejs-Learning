@@ -23,7 +23,18 @@ export default class RequestHandler {
 
     getHandler() {
         const security = this.getSecurity();
-        return security ? [security, this.#handler] : this.#handler;
+        return security ? [security, this.wrapError(this.#handler)] : this.wrapError(this.#handler);
+        // return security ? [security, this.#handler] : this.#handler;
+    }
+
+    wrapError(handler) {
+        return async (req, res, next) => {
+            try {
+                await handler(req, res, next);
+            } catch (err) {
+                next(err);
+            }
+        };
     }
 
     getSecurity() {

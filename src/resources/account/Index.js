@@ -4,8 +4,8 @@ import accountHandler from "./AccountHandler.js";
 
 const accountResource = new ResourceHandler("account")
 accountResource
-    .get(new RequestHandler("my-profile", accountHandler.myInfo))
-    .get(new RequestHandler("login", accountHandler.login, ["ROLE_USER"]));
+    .get(new RequestHandler("my-profile", accountHandler.myInfo, ["ROLE_USER"]))
+    .post(new RequestHandler("login", accountHandler.login));
 
 export default accountResource;
 

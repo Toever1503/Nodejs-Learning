@@ -1,15 +1,26 @@
 import express from "express";
 import initResources from "./src/bases/route/Index.js";
-import accountResource from "./src/resources/account/index.js";
-import getJwtFilter from "./src/configs/JwtConfig.mjs";
-import  './src/repositories/Index.mjs';
+import accountResource from "./src/resources/account/Index.js";
+import getJwtFilter from "./src/configs/jwt.config.mjs";
+import './src/repositories/Index.mjs';
+import bodyParser from "body-parser";
+import multer from "multer";
+import CustomExceptionHandler from "./src/resources/exception/CustomExceptionHandler.mjs";
 
 const app = express();
 
-// app.use(getJwtFilter());
-// initResources(app, accountResource);
+// parse application/json
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(multer().array());
+app.use(getJwtFilter());
 
 
+initResources(app,
+    accountResource);
+
+
+app.use(CustomExceptionHandler);
 const server = app.listen(8081, function () {
     const host = server.address().address
     const port = server.address().port

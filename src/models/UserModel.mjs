@@ -1,7 +1,7 @@
 "use strict";
-// Path: src\mappers\UserMapper.mjs
+// Path: src\models\UserModel.mjs
 
-export default class UserMapper {
+export default class UserModel {
     static async toEntity(model) {
         const entity = {};
         entity.id = model.id;

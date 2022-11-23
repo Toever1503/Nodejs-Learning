@@ -1,6 +1,7 @@
 "use strict";
 import RequestMatcher from "../RequestMatcher.js";
 import JwtFilterError from "../errors/JwtFilterError.mjs";
+import UserDetail from "./UserDetail.mjs";
 
 export default class JwtFilter {
     #PUBLIC_URL_MATCHERS
@@ -42,6 +43,10 @@ export default class JwtFilter {
                 return;
             }
             const userDetail = await this.#userService.validateToken(token.slice(7));
+            if (!(userDetail instanceof UserDetail))
+                next(new JwtFilterError('User detail must be an instance of UserDetail'));
+            else if (!(userDetail.getUserAuth()))
+                next(new JwtFilterError('UserAuth must be set in UserDetail'));
             req.$auth = userDetail;
             next();
         }
