@@ -1,14 +1,16 @@
 "use strict";
 // Path: src\models\UserModel.mjs
 
-export default class UserModel {
+import UserEntitySchema from "../entities/UserEntity.js";
+
+export class UserModel {
     static async toEntity(model) {
-        const entity = {};
-        entity.id = model.id;
-        entity.username = model.username;
-        entity.password = model.password;
-        entity.email = model.email;
-        entity.role = model.role;
-        return entity;
+        return new UserEntitySchema.entity(
+            model.id,
+            model.username,
+            model.password,
+            model.email
+        );
     }
 }
+

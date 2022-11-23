@@ -4,7 +4,6 @@ import "./UserRepository.mjs";
 import "./ConstraintConfig.mjs";
 import {initRole, initUser} from "./Init.mjs";
 
-
 const entityManager = await getEntityManager();
 entityManager.sync({alter: true});
 
