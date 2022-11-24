@@ -6,6 +6,8 @@ import CustomErrorDto from "../dtos/CustomErrorDto.mjs";
 import UserLoginResponseDto from "../dtos/UserLoginResponseDto.mjs";
 import RoleEntitySchema from "../entities/RoleEntity.js";
 import UserDetail from "../configs/security/jwt/UserDetail.mjs";
+import UserEntity from "../entities/UserEntity.js";
+import {UserModel} from "../models/UserModel.mjs";
 
 
 class UserService {
@@ -14,6 +16,12 @@ class UserService {
 
     constructor(userRepository) {
         this.#userRepository = userRepository;
+    }
+
+    async addUser(model){
+        const user = await UserModel.toEntity(model);
+
+        await this.#userRepository.create(user);
     }
 
     async validateToken(token) {

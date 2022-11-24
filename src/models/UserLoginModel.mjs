@@ -1,20 +1,12 @@
 "use strict";
 // Path: src\repositories\UserRepository.mjs
 export default class UserLoginModel {
-    #userName
-    #password
-    #rememberMe
 
-    getUserName() {
-        return this.#userName;
+    constructor(username, password, rememberMe) {
+        this.username = username;
+        this.password = password;
+        this.rememberMe = rememberMe;
     }
 
-    getPassword() {
-        return this.#password;
-    }
-
-    getRememberMe() {
-        return this.#rememberMe
-    }
 };
 

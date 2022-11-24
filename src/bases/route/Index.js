@@ -6,7 +6,7 @@ function initResources(app, ...resources) {
 
     resources.forEach(resource => {
         if (checkRoute.filter(path => path === resource.getBasePath()).length > 1)
-            throw new Error(`Failed to create route because path '${resource.getBasePath()}' has multiple`);
+            throw new Error(`Failed to create route because path ${resource.getBasePath()} has multiple`);
     });
 
     resources.forEach(resource => {

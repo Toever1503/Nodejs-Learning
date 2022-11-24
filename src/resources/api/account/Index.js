@@ -1,5 +1,5 @@
-import ResourceHandler from "../../bases/route/ResourceHandler.js";
-import RequestHandler from "../../bases/route/RequestHandler.js";
+import ResourceHandler from "../../../bases/route/ResourceHandler.js";
+import RequestHandler from "../../../bases/route/RequestHandler.js";
 import accountHandler from "./AccountHandler.js";
 
 const accountResource = new ResourceHandler("account")

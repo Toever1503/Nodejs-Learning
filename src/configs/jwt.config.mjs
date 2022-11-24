@@ -5,6 +5,9 @@ import RequestMatcher from "./security/RequestMatcher.js";
 
 const publicUrls = [
     new RequestMatcher('/account/login'),
+    new RequestMatcher('/admin/**'),
+    new RequestMatcher('/favicon.ico'),
+    new RequestMatcher('/assets/**'),
 ];
 
 
